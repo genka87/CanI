@@ -1,4 +1,5 @@
 ﻿using System;
+using CanI.Core.Authorization;
 
 namespace CanI.Mvc
 {
@@ -13,14 +14,9 @@ namespace CanI.Mvc
             this.subject = subject;
         }
 
-        public String Action
+        public RequestedActionOnSubject RequestedActionOnSubject
         {
-            get { return action; }
-        }
-
-        public String Subject
-        {
-            get { return subject; }
+            get { return new RequestedActionOnSubject(action, subject); }
         }
     }
 }

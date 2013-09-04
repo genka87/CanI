@@ -27,7 +27,7 @@ namespace CanI.Mvc
                 filterContext.ActionDescriptor.GetCustomAttributes(typeof (AuthorizeForAttribute), false)
                     .OfType<AuthorizeForAttribute>();
 
-            if (ability.Allows(action, subject) || attributes.Any(a => ability.Allows(a.Action,a.Subject))) 
+            if (ability.Allows(action, subject) || attributes.Any(a => ability.Allows(a.RequestedActionOnSubject))) 
                 return;
 
             filterContext.Result = resultOnFailedAuthorization(filterContext);

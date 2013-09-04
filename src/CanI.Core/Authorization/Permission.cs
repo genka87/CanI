@@ -47,6 +47,11 @@ namespace CanI.Core.Authorization
                    && SubjectAllowsAction(requestedAction, requestedSubject);
         }
 
+        public Boolean Authorizes(RequestedActionOnSubject requestedActionOnSubject)
+        {
+            return Authorizes(requestedActionOnSubject.Action, requestedActionOnSubject.Subject);
+        }
+
         private bool MatchesAction(string requestedAction)
         {
             if (Action == "manage") //--> Statics (Const) || Enum?

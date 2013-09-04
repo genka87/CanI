@@ -25,6 +25,11 @@ namespace CanI.Core.Authorization
             return permissions.Any(p => p.Authorizes(action, subject));
         }
 
+        public bool Allows(RequestedActionOnSubject requestedActionOnSubject)
+        {
+            return permissions.Any(p => p.Authorizes(requestedActionOnSubject));
+        }
+
         public bool AllowsExecutionOf(object command)
         {
             return permissions.Any(p => p.AllowsExecutionOf(command));
