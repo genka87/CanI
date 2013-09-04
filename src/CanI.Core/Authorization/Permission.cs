@@ -49,7 +49,7 @@ namespace CanI.Core.Authorization
 
         private bool MatchesAction(string requestedAction)
         {
-            if (Action == "manage") 
+            if (Action == "manage") //--> Statics (Const) || Enum?
                 return true;
 
             return Action == actionCleaner.Clean(requestedAction);
@@ -57,7 +57,7 @@ namespace CanI.Core.Authorization
 
         private bool MatchesSubject(object requestedSubject)
         {
-            if (Subject == "all") 
+            if (Subject == "all") //--> Statics (Const) || Enum?
                 return true;
 
             return Subject == subjectCleaner.Clean(requestedSubject);

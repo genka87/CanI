@@ -10,6 +10,9 @@ namespace CanI.Demo.Authorization
             config.Allow("SignIn", "SignOut").On("Account");
             config.AllowTo("View", "Home");
 
+            if (principal.IsInRole("guest"))
+                config.AllowTo("list", "customer");            
+            
             if (principal.IsInRole("admin"))
                 config.AllowTo("Manage", "All");
 

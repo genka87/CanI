@@ -13,7 +13,7 @@ namespace CanI.Core.Predicates
 
         public bool Allows(object subject)
         {
-            if(typeof(T).IsInstanceOfType(subject))
+            if(subject is T)
                 return predicate((T) subject);
             return true;
         }

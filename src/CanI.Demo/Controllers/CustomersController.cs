@@ -5,6 +5,7 @@ using CanI.Demo.Authorization;
 using CanI.Demo.Domain;
 using CanI.Demo.Domain.Commands;
 using CanI.Demo.Models;
+using CanI.Mvc;
 
 namespace CanI.Demo.Controllers
 {
@@ -18,6 +19,7 @@ namespace CanI.Demo.Controllers
 
         private readonly IRepository repository = new StaticInMemoryRepository();
 
+        [AuthorizeFor("list","customer")]
         public ActionResult Index()
         {
             IEnumerable<CustomerViewModel> customers = repository.FindAll<Customer>()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using CanI.Core.Configuration;
 
@@ -22,7 +23,12 @@ namespace CanI.Mvc
             var action = filterContext.ActionDescriptor.ActionName;
             var subject = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
 
-            if (ability.Allows(action, subject)) return;
+            var attributes =
+                filterContext.ActionDescriptor.GetCustomAttributes(typeof (AuthorizeForAttribute), false)
+                    .OfType<AuthorizeForAttribute>();
+
+            if (ability.Allows(action, subject) || attributes.Any(a => ability.Allows(a.Action,a.Subject))) 
+                return;
 
             filterContext.Result = resultOnFailedAuthorization(filterContext);
         }
